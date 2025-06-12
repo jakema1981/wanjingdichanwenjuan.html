@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹰潭万景房地产开发有限公司市场问卷调查</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #1a5276;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .survey-section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .question:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #1a5276;
+            padding-bottom: 5px;
+        }
+        h3 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1a5276;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #154360;
+        }
+        .results {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #eaf2f8;
+            border-radius: 5px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            margin: 20px 0;
+        }
+        .required {
+            color: red;
+        }
+        .multi-select {
+            columns: 2;
+        }
+        @media (max-width: 600px) {
+            .multi-select {
+                columns: 1;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>鹰潭万景房地产开发有限公司市场问卷调查</h1>
+    </div>
+    
+    <div class="survey-section">
+        <p>您好！我是鹰潭万景房地产开发有限公司市调专员。受经济大环境不佳影响，当前房地产市场承受了一定的压力，随着规划设计条件的进一步放宽，新规住宅、4代住宅等改善住宅的需求将得到良好的释放，为更好的服务市场，满足市场需求，现做不具名市场调查如下，谢谢配合！</p>
+    </div>
+    
+    <form id="surveyForm">
+        <div class="survey-section">
+            <h2>甄别问卷</h2>
+            <div class="question">
+                <h3>请问您近期或未来1、2年内是否有购房或换房的计划 <span class="required">*</span></h3>
+                <label><input type="radio" name="q0" value="A" required> A、有</label>
+                <label><input type="radio" name="q0" value="B"> B、没有</label>
+            </div>
+        </div>
+        
+        <div id="purchaseSection" class="survey-section" style="display: none;">
+            <h2>以下内容由有购房意向人士填写</h2>
+            
+            <div class="question">
+                <h3>1、假如您要购房，您是属于几次置业 <span class="required">*</span></h3>
+                <label><input type="radio" name="q1" value="A"> A、首次置业</label>
+                <label><input type="radio" name="q1" value="B"> B、二次置业</label>
+                <label><input type="radio" name="q1" value="C"> C、多次置业</label>
+            </div>
+            
+            <div class="question">
+                <h3>2、假如您要购房，您购房的目的是什么 <span class="required">*</span></h3>
+                <label><input type="radio" name="q2" value="A"> A、改善居住环境</label>
+                <label><input type="radio" name="q2" value="B"> B、家庭刚需</label>
+                <label><input type="radio" name="q2" value="C"> C、换房</label>
+                <label><input type="radio" name="q2" value="D"> D、投资</label>
+            </div>
+            
+            <div class="question">
+                <h3>3、假如您要购房，您最在意的因素是什么（可多选） <span class="required">*</span></h3>
+                <div class="multi-select">
+                    <label><input type="checkbox" name="q3" value="A"> A、地段</label>
+                    <label><input type="checkbox" name="q3" value="B"> B、商业配套</label>
+                    <label><input type="checkbox" name="q3" value="C"> C、教育配套</label>
+                    <label><input type="checkbox" name="q3" value="D"> D、价格</label>
+                    <label><input type="checkbox" name="q3" value="E"> E、小区品质</label>
+                    <label><input type="checkbox" name="q3" value="F"> F、户型</label>
+                    <label><input type="checkbox" name="q3" value="G"> G、开发商品牌</label>
+                    <label><input type="checkbox" name="q3" value="H"> H、物业管理</label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <h3>4、假如您要购房，你理想的购房区域是哪里 <span class="required">*</span></h3>
+                <label><input type="radio" name="q4" value="A"> A、老城中心</label>
+                <label><input type="radio" name="q4" value="B"> B、新城中心</label>
+                <label><input type="radio" name="q4" value="C"> C、城东片区</label>
+                <label><input type="radio" name="q4" value="D"> D、城南片区</label>
+                <label><input type="radio" name="q4" value="E"> E、城北片区</label>
+            </div>
+            
+            <div class="question">
+                <h3>5、假如您要购房，您希望的住房面积是多少 <span class="required">*</span></h3>
+                <label><input type="radio" name="q5" value="A"> A、100以内</label>
+                <label><input type="radio" name="q5" value="B"> B、100-110</label>
+                <label><input type="radio" name="q5" value="C"> C、110-120</label>
+                <label><input type="radio" name="q5" value="D"> D、120-130</label>
+                <label><input type="radio" name="q5" value="E"> E、130-140</label>
+                <label><input type="radio" name="q5" value="F"> F、140-160</label>
+                <label><input type="radio" name="q5" value="G"> G、160-180</label>
+                <label><input type="radio" name="q5" value="H"> H、180-200</label>
+                <label><input type="radio" name="q5" value="I"> I、200及以上</label>
+                <label>J、其他 <input type="text" name="q5_other"></label>
+            </div>
+            
+            <div class="question">
+                <h3>6、假如您要购房，您理想购买的物业类型是什么 <span class="required">*</span></h3>
+                <label><input type="radio" name="q6" value="A"> A、别墅</label>
+                <label><input type="radio" name="q6" value="B"> B、叠墅（上下叠）</label>
+                <label><input type="radio" name="q6" value="C"> C、大平层</label>
+                <label><input type="radio" name="q6" value="D"> D、洋房</label>
+                <label><input type="radio" name="q6" value="E"> E、小高层（11-18F）</label>
+                <label><input type="radio" name="q6" value="F"> F、高层（18F以上）</label>
+            </div>
+            
+            <div class="question">
+                <h3>7、假如您要改善住户条件，您能接受的最高单价是多少 <span class="required">*</span></h3>
+                <label><input type="radio" name="q7" value="A"> A、5000以内</label>
+                <label><input type="radio" name="q7" value="B"> B、5000-5500</label>
+                <label><input type="radio" name="q7" value="C"> C、5500-6000</label>
+                <label><input type="radio" name="q7" value="D"> D、6000-6500</label>
+                <label><input type="radio" name="q7" value="E"> E、6500-7000</label>
+                <label><input type="radio" name="q7" value="F"> F、7000-8000</label>
+                <label><input type="radio" name="q7" value="G"> G、8000-10000</label>
+                <label><input type="radio" name="q7" value="H"> H、10000以上</label>
+            </div>
+            
+            <div class="question">
+                <h3>8、假如您要购房，您能接受的最高首付款是多少 <span class="required">*</span></h3>
+                <label><input type="radio" name="q8" value="A"> A、10万以内</label>
+                <label><input type="radio" name="q8" value="B"> B、10-15万</label>
+                <label><input type="radio" name="q8" value="C"> C、15-20万</label>
+                <label><input type="radio" name="q8" value="D"> D、20-30万</label>
+                <label><input type="radio" name="q8" value="E"> E、30-50万</label>
+                <label><input type="radio" name="q8" value="F"> F、50万以上</label>
+            </div>
+            
+            <div class="question">
+                <h3>9、假如您要购房，您会选择什么付款方式 <span class="required">*</span></h3>
+                <label><input type="radio" name="q9" value="A"> A、银行按揭</label>
+                <label><input type="radio" name="q9" value="B"> B、公积金贷款</label>
+                <label><input type="radio" name="q9" value="C"> C、一次性付款</label>
+            </div>
+            
+            <div class="question">
+                <h3>10、假如您要购房，您最在意的小区规划设计是什么（可多选） <span class="required">*</span></h3>
+                <div class="multi-select">
+                    <label><input type="checkbox" name="q10" value="A"> A、园林景观</label>
+                    <label><input type="checkbox" name="q10" value="B"> B、外立面风格</label>
+                    <label><input type="checkbox" name="q10" value="C"> C、公共设施</label>
+                    <label><input type="checkbox" name="q10" value="D"> D、地下停车场</label>
+                    <label><input type="checkbox" name="q10" value="E"> E、日照采光</label>
+                    <label><input type="checkbox" name="q10" value="F"> F、小区大门</label>
+                    <label><input type="checkbox" name="q10" value="G"> G、户型设计</label>
+                    <label>H、其他 <input type="text" name="q10_other"></label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <h3>11、假如您要购房、您最希望小区内有什么配套设施（可多选） <span class="required">*</span></h3>
+                <div class="multi-select">
+                    <label><input type="checkbox" name="q11" value="A"> A、户外运动</label>
+                    <label><input type="checkbox" name="q11" value="B"> B、亲子乐园</label>
+                    <label><input type="checkbox" name="q11" value="C"> C、书吧</label>
+                    <label><input type="checkbox" name="q11" value="D"> D、美容养身</label>
+                    <label><input type="checkbox" name="q11" value="E"> E、健身设施</label>
+                    <label><input type="checkbox" name="q11" value="F"> F、养身步道</label>
+                    <label><input type="checkbox" name="q11" value="G"> G、教育培训</label>
+                    <label><input type="checkbox" name="q11" value="H"> H、会客商务</label>
+                    <label>I、其他 <input type="text" name="q11_other"></label>
+                </div>
+            </div>
+            
+            <div class="question">
+                <h3>12、假如您要购房，您对户型的要求是什么（可多选） <span class="required">*</span></h3>
+                <div class="multi-select">
+                    <label><input type="checkbox" name="q12" value="A"> A、通风采光</label>
+                    <label><input type="checkbox" name="q12" value="B"> B、大客厅大主卧</label>
+                    <label><input type="checkbox" name="q12" value="C"> C、南北双阳台</label>
+                    <label><input type="checkbox" name="q12" value="D"> D、宽厅户型</label>
+                    <label><input type="checkbox" name="q12" value="E"> E、三开间以上朝南</label>
+                    <label>F、其他 <input type="text" name="q12_other"></label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="survey-section">
+            <h2>个人信息</h2>
+            
+            <div class="question">
+                <h3>1、您的职业？ <span class="required">*</span></h3>
+                <label><input type="radio" name="info1" value="A" required> A、公务员</label>
+                <label><input type="radio" name="info1" value="B"> B、事业单位</label>
+                <label><input type="radio" name="info1" value="C"> C、私营企业</label>
+                <label><input type="radio" name="info1" value="D"> D、个体经营业主</label>
+                <label><input type="radio" name="info1" value="E"> E、其他</label>
+            </div>
+            
+            <div class="question">
+                <h3>2、您的职位？ <span class="required">*</span></h3>
+                <label><input type="radio" name="info2" value="A" required> A、高层管理</label>
+                <label><input type="radio" name="info2" value="B"> B、中层管理</label>
+                <label><input type="radio" name="info2" value="C"> C、基层员工</label>
+                <label><input type="radio" name="info2" value="D"> D、私企老板</label>
+                <label><input type="radio" name="info2" value="E"> E、个体经营</label>
+                <label><input type="radio" name="info2" value="F"> F、政府领导</label>
+                <label><input type="radio" name="info2" value="G"> G、其他</label>
+            </div>
+            
+            <div class="question">
+                <h3>3、您的年收入？ <span class="required">*</span></h3>
+                <label><input type="radio" name="info3" value="A" required> A、3-5万</label>
+                <label><input type="radio" name="info3" value="B"> B、5-8万</label>
+                <label><input type="radio" name="info3" value="C"> C、8-10万</label>
+                <label><input type="radio" name="info3" value="D"> D、10-15万</label>
+                <label><input type="radio" name="info3" value="E"> E、15-20万</label>
+                <label><input type="radio" name="info3" value="F"> F、20-30万</label>
+                <label><input type="radio" name="info3" value="G"> G、30-50万</label>
+                <label><input type="radio" name="info3" value="H"> H、50万以上</label>
+            </div>
+            
+            <div class="question">
+                <h3>4、您的家庭年收入 <span class="required">*</span></h3>
+                <label><input type="radio" name="info4" value="A" required> A、10万以内</label>
+                <label><input type="radio" name="info4" value="B"> B、10-15万</label>
+                <label><input type="radio" name="info4" value="C"> C、15-20万</label>
+                <label><input type="radio" name="info4" value="D"> D、20-30万</label>
+                <label><input type="radio" name="info4" value="E"> E、30-40万</label>
+                <label><input type="radio" name="info4" value="F"> F、40-50万</label>
+                <label><input type="radio" name="info4" value="G"> G、50万以上</label>
+            </div>
+            
+            <div class="question">
+                <h3>5、您现在的居住小区名称</h3>
+                <input type="text" name="info5">
+            </div>
+            
+            <div class="question">
+                <h3>6、您现在的住房类型是 <span class="required">*</span></h3>
+                <label><input type="radio" name="info6" value="A" required> A、自建房</label>
+                <label><input type="radio" name="info6" value="B"> B、老式多层（4-8F）</label>
+                <label><input type="radio" name="info6" value="C"> C、电梯洋房</label>
+                <label><input type="radio" name="info6" value="D"> D、小高层</label>
+                <label><input type="radio" name="info6" value="E"> E、高层</label>
+                <label><input type="radio" name="info6" value="F"> F、自建别墅</label>
+                <label><input type="radio" name="info6" value="G"> G、其他 <input type="text" name="info6_other"></label>
+            </div>
+            
+            <div class="question">
+                <h3>7、您对新建住宅项目有什么期待？</h3>
+                <textarea name="info7" rows="4" style="width: 100%;"></textarea>
+            </div>
+        </div>
+        
+        <button type="submit">提交问卷</button>
+    </form>
+    
+    <div id="results" class="results">
+        <h2>感谢您的参与！</h2>
+        <p>您的反馈对我们非常重要。以下是当前调查结果的统计概览：</p>
+        
+        <div class="chart-container">
+            <canvas id="purchasePlanChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="purposeChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="areaPreferenceChart"></canvas>
+        </div>
+        
+        <p>如需查看完整统计结果或导出数据，请联系调查管理员。</p>
+    </div>
+    
+    <script>
+        // 显示/隐藏购房相关问题
+        document.querySelectorAll('input[name="q0"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('purchaseSection').style.display = 
+                    this.value === 'A' ? 'block' : 'none';
+            });
+        });
+        
+        // 表单提交处理
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 验证必填项
+            const requiredInputs = document.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredInputs.forEach(input => {
+                if (input.type === 'radio' || input.type === 'checkbox') {
+                    const name = input.name;
+                    const checked = document.querySelectorAll(`input[name="${name}"]:checked`).length > 0;
+                    if (!checked) {
+                        isValid = false;
+                        input.closest('.question').style.backgroundColor = '#fff0f0';
+                    } else {
+                        input.closest('.question').style.backgroundColor = '';
+                    }
+                } else if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = 'red';
+                } else {
+                    input.style.borderColor = '';
+                }
+            });
+            
+            if (!isValid) {
+                alert('请填写所有必填问题（标有*号）');
+                return;
+            }
+            
+            // 收集数据
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (!data[key]) {
+                    data[key] = [];
+                }
+                data[key].push(value);
+            }
+            
+            // 在实际应用中，这里应该将数据发送到服务器保存
+            console.log('收集到的数据:', data);
+            
+            // 显示感谢信息和统计结果
+            document.getElementById('surveyForm').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+            
+            // 显示一些示例图表
+            renderCharts();
+        });
+        
+        // 示例图表渲染
+        function renderCharts() {
+            // 购房计划图表
+            const purchasePlanCtx = document.getElementById('purchasePlanChart').getContext('2d');
+            new Chart(purchasePlanCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['有购房计划', '无购房计划'],
+                    datasets: [{
+                        data: [65, 35], // 示例数据，实际应用中应从服务器获取
+                        backgroundColor: ['#1a5276', '#3498db']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '购房计划比例'
+                        }
+                    }
+                }
+            });
+            
+            // 购房目的图表
+            const purposeCtx = document.getElementById('purposeChart').getContext('2d');
+            new Chart(purposeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['改善居住', '家庭刚需', '换房', '投资'],
+                    datasets: [{
+                        label: '购房目的',
+                        data: [40, 30, 20, 10], // 示例数据
+                        backgroundColor: '#1a5276'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '购房目的分布'
+                        }
+                    }
+                }
+            });
+            
+            // 区域偏好图表
+            const areaCtx = document.getElementById('areaPreferenceChart').getContext('2d');
+            new Chart(areaCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['老城中心', '新城中心', '城东片区', '城南片区', '城北片区'],
+                    datasets: [{
+                        data: [25, 35, 15, 10, 15], // 示例数据
+                        backgroundColor: ['#1a5276', '#2874a6', '#3498db', '#5dade2', '#85c1e9']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '理想购房区域分布'
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
